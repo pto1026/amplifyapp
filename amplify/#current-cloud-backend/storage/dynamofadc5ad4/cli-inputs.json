@@ -1,0 +1,26 @@
+{
+  "resourceName": "dynamofadc5ad4",
+  "tableName": "dynamofadc5ad4",
+  "partitionKey": {
+    "fieldName": "title",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "body",
+    "fieldType": "string"
+  },
+  "gsi": [
+    {
+      "name": "indexes",
+      "partitionKey": {
+        "fieldName": "body",
+        "fieldType": "string"
+      },
+      "sortKey": {
+        "fieldName": "title",
+        "fieldType": "string"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}

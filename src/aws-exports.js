@@ -23,6 +23,20 @@ const awsmobile = {
     },
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
+    ],
+    "aws_dynamodb_all_tables_region": "us-west-2",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "dynamofadc5ad4-staging",
+            "region": "us-west-2"
+        }
+    ],
+    "aws_cloud_logic_custom": [
+        {
+            "name": "notesapp",
+            "endpoint": "https://cps3dfeccg.execute-api.us-west-2.amazonaws.com/staging",
+            "region": "us-west-2"
+        }
     ]
 };
 

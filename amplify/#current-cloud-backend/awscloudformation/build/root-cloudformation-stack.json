@@ -152,6 +152,27 @@
         }
       }
     },
+    "APIGatewayAuthStack": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify41fe97c2951a4-staging-90137-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json",
+        "Parameters": {
+          "authRoleName": {
+            "Ref": "AuthRoleName"
+          },
+          "unauthRoleName": {
+            "Ref": "UnauthRoleName"
+          },
+          "env": "staging",
+          "notesapp": {
+            "Fn::GetAtt": [
+              "apinotesapp",
+              "Outputs.ApiId"
+            ]
+          }
+        }
+      }
+    },
     "authamplifyapp410a9b28": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
@@ -201,6 +222,64 @@
           },
           "breakCircularDependency": true,
           "dependsOn": "",
+          "env": "staging"
+        }
+      }
+    },
+    "storagedynamofadc5ad4": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify41fe97c2951a4-staging-90137-deployment/amplify-cfn-templates/storage/dynamofadc5ad4-cloudformation-template.json",
+        "Parameters": {
+          "tableName": "dynamofadc5ad4",
+          "partitionKeyName": "title",
+          "partitionKeyType": "S",
+          "sortKeyName": "body",
+          "sortKeyType": "S",
+          "env": "staging"
+        }
+      }
+    },
+    "functionamplifyapp51e92ffa": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify41fe97c2951a4-staging-90137-deployment/amplify-cfn-templates/function/amplifyapp51e92ffa-cloudformation-template.json",
+        "Parameters": {
+          "deploymentBucketName": "amplify-amplify41fe97c2951a4-staging-90137-deployment",
+          "s3Key": "amplify-builds/amplifyapp51e92ffa-7a50766d636536786265-build.zip",
+          "storagedynamofadc5ad4Name": {
+            "Fn::GetAtt": [
+              "storagedynamofadc5ad4",
+              "Outputs.Name"
+            ]
+          },
+          "storagedynamofadc5ad4Arn": {
+            "Fn::GetAtt": [
+              "storagedynamofadc5ad4",
+              "Outputs.Arn"
+            ]
+          },
+          "env": "staging"
+        }
+      }
+    },
+    "apinotesapp": {
+      "Type": "AWS::CloudFormation::Stack",
+      "Properties": {
+        "TemplateURL": "https://s3.amazonaws.com/amplify-amplify41fe97c2951a4-staging-90137-deployment/amplify-cfn-templates/api/notesapp-cloudformation-template.json",
+        "Parameters": {
+          "functionamplifyapp51e92ffaName": {
+            "Fn::GetAtt": [
+              "functionamplifyapp51e92ffa",
+              "Outputs.Name"
+            ]
+          },
+          "functionamplifyapp51e92ffaArn": {
+            "Fn::GetAtt": [
+              "functionamplifyapp51e92ffa",
+              "Outputs.Arn"
+            ]
+          },
           "env": "staging"
         }
       }
